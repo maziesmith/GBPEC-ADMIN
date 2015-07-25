@@ -1,0 +1,415 @@
+      <!--main content start-->
+      <section id = "main-content" >
+          <section class = "wrapper site-min-height" >
+          <!-- page start-->
+          <div class="row">
+                  <div class="col-lg-12">
+                     <section class="panel">
+                          <header class="panel-heading">
+                              Search Student
+                              <span class="tools pull-right">
+                                <a class="fa fa-chevron-up" href="javascript:;"></a>
+                                <a class="fa fa-times" href="javascript:;"></a>
+                                </span>
+                          </header>
+                          <div style="display:block" class="panel-body">
+                          <center>
+                            
+                               <form class="form-inline" action="" method="post">
+                                 <div class="form-group">
+                                      <label class="sr-only" for="exampleInputEmail2">Course</label>
+                                      <select class="form-control" name="course">
+                                        <option>Select Course</option>
+                                        {foreach $list in $courselist}
+                                        <option value="{$list->id}">{$list->course_name}</option>
+                                        {/foreach}
+                                      </select>
+                                      
+                                  </div> 
+                                  <div class="form-group">
+                                      <label class="sr-only" for="exampleInputEmail2">Branch</label>
+                                     <select class="form-control" name="branch">
+                                     <option> Select a Branch</option>
+                                     {if isset($branches)}
+                                     {foreach $branch1 in $branches}
+                                     <option value="{$branch1->id}">{$branch1->branch_name}</option>
+                                     {/foreach}
+                                     {/if}
+                                     {else}
+                                     <option> Select A branch</option>
+                                     {/else}
+                                      </select>
+                                    </div>
+                                  <div class="form-group">
+                                      <label class="sr-only" for="exampleInputEmail2">Semester</label>
+                                      <select class="form-control" name="semester">
+                                        <option>Select Smester</option>
+                                        <option value="1">First</option>
+                                        <option value="2">Seocnd</option>
+                                        <option value="3">Third</option>
+                                        <option value="4">Fourth</option>
+                                        <option value="5">Fifth</option>
+                                        <option value="6">Sixth</option>
+                                        <option value="7">Seventh</option>
+                                        <option value="8">Eighth</option>
+
+
+                                      </select>
+                                  </div>
+                                  <input type="hidden" name="action" value="list">
+                                  <button type="submit" class="btn btn-success">Search</button>
+                               </form>
+
+                               <hr>
+                               <form action="" method="post" class="form-inline">
+                               <center>
+                                  <div class="form-group">
+                                      <label class="sr-only" for="exampleInputEmail2">Enrollment No.</label>
+                                      <input class="form-control" name="enrollment">
+                                      <input type="hidden" name="action" value="search_enroll">
+                                  </div>
+                                  <button type="submit" class="btn btn-success">Search</button>
+                                  </center>
+                               </form>
+
+                          </center>
+                          </div>
+                      </section>
+
+                  </div>
+              </div>
+              {if isset($fail)}
+              <div class="row">
+                  <div class="col-lg-12">
+                      <section class="panel">
+                          <div class="panel-body">
+                              <center><strong>No Result Found</strong></center>
+                          </div>
+                      </section>
+
+                  </div>
+              </div>
+              {/if}
+
+              {if isset($list_found)}
+                  <div class="row">
+                          <section class="panel">
+                          <table class="table table-striped table-advance table-hover">
+                              <thead>
+                              <tr>
+                                  <th>Name</th>
+                                  <th class="hidden-phone">Enrollment No.</th>
+                                  <th>Mobile</th>
+                                  <th><i class=" fa fa-edit"></i>Options</th>
+                              </tr>
+                              </thead>
+                              <tbody>
+                              {foreach $studentl in $studentlist}
+                              {script $student = Student::first(array("id = ?" => $studentl->student_id))}
+                              <form action="" method="post">
+                              <tr>
+                                  <td>{$student->name}</td>
+                                  <td class="hidden-phone">{$student->enrollment_no}</td>
+                                  <td>{$student->phone}</td>
+                                  <td>
+                                  <input type="hidden" name="enrollment" value="{$student->enrollment_no}">
+                                  <input type="hidden" name="action" value="search_enroll">
+                                  <button type="submit" class="label label-info label-mini">View Profile</button>
+                                  </td>
+                              </tr>
+                              </form>
+                            {/foreach}
+                              </tbody>
+                          </table>
+                          </section>
+                          </div>
+              {/if}
+
+           {if isset($found)}   
+          <div class = "row" >
+          <aside class = "profile-nav col-lg-3" >
+          <section class = "panel" >
+          <div class = "user-heading round" >
+            <a href = "#" ><img src = "{echo CDN}img/profile-avatar.jpg" alt = "" /></a>
+            <h1>{$student->name}</h1>
+            <p> {$student->email} </p>
+          </div>
+          {script $semester = array("", "First", "Second", "Third", "Fourth", "Fifth", "Sixth", "Seventh", "Eighth")}
+          <ul class = "nav nav-pills nav-stacked" >
+          <li class = "active" > <a aria-expanded = "true" data-toggle = "tab" href = "#student" ><i class="fa fa-user"></i> Student Details</a></li>
+          <li><a aria-expanded = "true" data-toggle = "tab" href = "#parents"><i class="fa fa-group"></i>Parents Details</a></li>
+          <li><a aria-expanded = "true" data-toggle = "tab" href = "#academics"><i class="fa fa-pencil-square"></i>Academic Records</a></li>
+          </ul>
+      </section>
+      `    </aside>
+                  <aside class="profile-info col-lg-9">
+                  <div class="tab-content">
+                   <div id="student" class="tab-pane active">
+                      <section class="panel">
+                          <div class="bio-graph-heading">
+                             Profile
+                          </div>
+                          <div class="panel-body bio-graph-info">
+                              <h1>Academic Details</h1>
+                              <div class="row">
+                                  <div class="bio-row">
+                                      <p><span>Name </span>{$student->name}</p>
+                                  </div>
+                                  <div class="bio-row">
+                                      <p><span>Enrollment No.</span> {$student->enrollment_no}</p>
+                                  </div>
+                                  <div class="bio-row">
+                                      <p><span>Course</span>{$course->course_name}</p>
+                                  </div>
+                                  <div class="bio-row">
+                                      <p><span>Branch</span>{$branch->branch_name}</p>
+                                  </div>
+                                  <div class="bio-row">
+                                      <p><span>ID Card No. </span> UI Designer</p>
+                                  </div>
+                                  <div class="bio-row">
+                                      <p><span>Semester</span>jsmith@flatlab.com</p>
+                                  </div>
+                                  <div class="bio-row">
+                                      <p><span>Mobile </span>{$student->phone}</p>
+                                  </div>
+                                  <div class="bio-row">
+                                      <p><span>Phone </span> 88 (02) 123456</p>
+                                  </div>
+                              </div>
+                          </div>
+                          <hr>
+                           <div class="panel-body bio-graph-info">
+                              <h1>Personal Details</h1>
+                              <div class="row">
+                                  <div class="bio-row">
+                                      <p><span>Birthday</span>{$studentdetail->dob}</p>
+                                  </div>
+                                  <div class="bio-row">
+                                      <p><span>Gender</span> {$studentdetail->gender}</p>
+                                  </div>
+                                  <div class="bio-row">
+                                      <p><span>Category </span>{$studentdetail->category} </p>
+                                  </div>
+                                  <div class="bio-row">
+                                      <p><span>Religion</span>{$studentdetail->religion}</p>
+                                  </div>
+                                  <div class="bio-row">
+                                      <p><span>Blood Group</span>{$studentdetail->blood_group}</p>
+                                  </div>
+                                  <div class="bio-row">
+                                      <p><span>Emergency Call</span>{$studentdetail->mobile}</p>
+                                  </div>
+                                  <div class="bio-row">
+                                      <p><span>Address </span> {$studentdetail->address}</p>
+                                  </div>
+                                  <div class="bio-row">
+                                      <p><span>Region </span> {$studentdetail->region}</p>
+                                  </div>
+                              </div>
+                          </div>
+                      </section>
+                      </div>
+                      <div id="parents" class="tab-pane">
+                      <section class="panel">
+                          <div class="bio-graph-heading">
+                             Parents
+                          </div>
+                          <div class="panel-body bio-graph-info">
+                              <h1>Parents Details</h1>
+                              <div class="row">
+                                  <div class="bio-row">
+                                      <p><span>Father</span> {$guardian->father_name}</p>
+                                  </div>
+                                  <div class="bio-row">
+                                      <p><span>Mother</span> {$guardian->mother_name}</p>
+                                  </div>
+                                  <div class="bio-row">
+                                      <p><span>Mobile No. </span> {$guardian->father_mobile}</p>
+                                  </div>
+                                  <div class="bio-row">
+                                      <p><span>Mobile No.</span> {$guardian->mother_mobile}</p>
+                                  </div>
+                                  <div class="bio-row">
+                                      <p><span>Occupation </span>{$guardian->father_occupation}</p>
+                                  </div>
+                                  <div class="bio-row">
+                                      <p><span>Occupation</span> {$guardian->mother_occupation}</p>
+                                  </div>
+                                  <div class="bio-row">
+                                      <p><span>Anuual Income </span>{$guardian->annual_income}</p>
+                                  </div>
+                                  <div class="bio-row">
+                                      <p><span>P. Address </span> {$guardian->address}</p>
+                                  </div>
+                              </div>
+                          </div>
+                      </section>
+                      </div>
+                      <div id="academics" class="tab-pane ">
+                      <section class="panel">
+                          <div class="bio-graph-heading">
+                            Academic Records
+                          </div>
+                          <div class="panel-body bio-graph-info">
+                              <h1>Admission Details</h1>
+                              <div class="row">
+                                  <div class="bio-row">
+                                      <p><span>CET Rank </span>{$studentdetail->cet_rank}</p>
+                                  </div>
+                                  <div class="bio-row">
+                                      <p><span>CET Roll </span>{$studentdetail->cet_roll}</p>
+                                  </div>
+                                  <div class="bio-row">
+                                      <p><span>Admission Year </span>{$studentdetail->admission_year}</p>
+                                  </div>
+                                  <div class="bio-row">
+                                      <p><span>Entry Type</span>{$studentdetail->entry_type}</p>
+                                  </div>
+                                  <div class="bio-row">
+                                      <p><span>10<sup>th</sup> Marks</span>: 88.57%</p>
+                                  </div>
+                                  <div class="bio-row">
+                                      <p><span>12<sup>th</sup> /Diploma</span>: 84.3%</p>
+                                  </div>
+                                  <div class="bio-row">
+                                      <p><span>Mobile </span>: (12) 03 4567890</p>
+                                  </div>
+                                  <div class="bio-row">
+                                      <p><span>Phone </span>: 88 (02) 123456</p>
+                                  </div>
+                              </div>
+                          </div>
+                          <hr>
+                          <div class="panel-body bio-graph-info">
+                              <h1>Semester Results</h1>
+                              <div class="row">
+                                 <section class="panel">
+                          <table class="table table-striped table-advance table-hover">
+                              <thead>
+                              <tr>
+                                  <th>Semester</th>
+                                  <th class="hidden-phone"> Description</th>
+                                  <th>Marks %</th>
+                                  <th><i class=" fa fa-edit"></i> Marksheet</th>
+                              </tr>
+                              </thead>
+                              <tbody>
+                              {if(!$sem)}
+                              <tr>
+                                <td colspan="4">  No Records Found</td>
+                              </tr>
+                              {/if}
+                              {else}
+                              {foreach $semi in $sem}
+                              <tr>
+                                  <td>{$semester[$semi->sem]}</td>
+                                  <td class="hidden-phone">Lorem Ipsum dorolo imit</td>
+                                  <td>{$semi->marks}</td>
+                                  <td>
+                                  <a class="label label-info label-mini" data-toggle="modal" href="#result-sem-{$semi->sem}">View</a>
+                                  <span class="label label-success label-mini">Export PDF</span>
+                                  </td>
+                              </tr>
+                              {/foreach}
+                              {/else}
+                              </tbody>
+                          </table>
+                           <!-- vertical center large Modal  start -->
+                           {foreach $semi in $sem}
+                              <div class="modal fade" id="result-sem-{$semi->sem}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                  <div class="modal-dialog modal-lg">
+                                      <div class="modal-content-wrap">
+                                          <div class="modal-content">
+                                              <div class="modal-header">
+                                                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                  <h4 class="modal-title"><center>GURU GOVIND SINGH INDRAPRASTHA UNIVERSITY</center></h4>
+                                              </div>
+                                              <div class="modal-body">
+                                              <div class="panel-body bio-graph-info">
+                                    <center>STATEMENTS OF MARKS</center>
+                                    <center>Bachelor Of Technology ({$branch->branch_name} Engineering)</center>
+                                    <br/>
+                                    <div class="row">
+                                        <div class="bio-row">
+                                            <p><span>Name</span>{$student->name}</p>
+                                        </div>
+                                        <div class="bio-row">
+                                            <p><span>ADMSN YEAR</span>{$studentdetail->admission_year}</p>
+                                        </div>
+                                        <div class="bio-row">
+                                            <p><span>Father</span>{$guardian->father_name}</p>
+                                        </div>
+                                        <div class="bio-row">
+                                            <p><span>Year/Sem</span>{$semester[$semi->sem]} Semester</p>
+                                        </div>
+                                        <div class="bio-row">
+                                            <p><span>Enroll No.</span>{$student->enrollment_no}</p>
+                                        </div>
+                                        <div class="bio-row">
+                                            <p><span>Exam Date</span>DEC. 2012</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                <tr>
+                                                    <th>Paper ID</th>
+                                                    <th>Code</th>
+                                                    <th>Paper</th>
+                                                    <th>Credits</th>
+                                                    <th>Internal</th>
+                                                    <th>External</th>
+                                                    <th>Total</th>
+                                                    <th>CS</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                {foreach $mark in $marks}
+                                                {script $subject = Subject::first(array("id = ?" => $mark->subject_id, "sem = ?" => $semi->sem))}
+                                                {if($subject)}
+                                                <tr>
+                                                    <td>{$subject->paper_id}</td>
+                                                    <td>{$subject->subject_code}</td>
+                                                    <td>{$subject->subject_name}</td>
+                                                    <td>{$subject->credits}</td>
+                                                    <td>{$mark->internal}</td>
+                                                    <td>{$mark->external}</td>
+                                                    <td>{echo $total = $mark->internal + $mark->external}</td>
+                                                    {if (($total)>=50)}
+                                                    <td>{$subject->credits}</td>
+                                                    {/if}
+                                                    {else}
+                                                    <td>0</td>
+                                                    {/else}
+                                                </tr>
+                                                {/if}
+                                                {/foreach}
+                                                </tbody>
+
+                                            </table>
+
+                                              </div>
+                                              <div class="modal-footer">
+                                              A - Absent, C- Cancelled, CS- Credit Secured, D-Detained, RL- Result Awaited, * - Passed with grace marks
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                              {/foreach}
+                              <!-- vertical center large Modal end -->
+
+                      </section>
+                              </div>
+                          </div>
+                      </section>
+                      </div>
+                      </div>
+                  </aside>
+              </div>
+              {/if}
+              <!-- page end-->
+          </section>
+      </section>

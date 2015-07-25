@@ -1,0 +1,112 @@
+<section id="main-content">
+          <section class="wrapper site-min-height">
+              <!-- page start-->
+              <ul class="directory-list">
+              {script $alphabet = array("a", "b", "c", "d","e", "f", "g","h","i","j", "k", "l", "m", "n","o","p", "q","r","s","t","u","v","w", "x", "y", "z")}
+              {foreach $alpha in $alphabet}
+                  <li><a href="tDirectory?action=start_letter&char={echo $alpha}">{echo $alpha}</a></li>
+              {/foreach}
+              </ul>
+              <div class="directory-info-row">
+              <div class="row">
+              {if isset($teachers)}
+              {foreach $teacher in $teachers}
+              <div class="col-md-6 col-sm-6">
+                  <div class="panel">
+                      <div class="panel-body">
+                          <div class="media">
+                              <a class="pull-left" href="#">
+                                  <img class="thumb media-object" src="{echo CDN}img/photos/user1.png" alt="">
+                              </a>
+                              <div class="media-body">
+                                  <h4>{$teacher->name}</h4>
+                                  {script $tsurl = SocialUrl::first(array("property =?"=> "employee", "property_id =?"=>$teacher->id))}
+                                  {if($tsurl)}
+                                  <ul class="social-links">
+                                      <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="{$tsurl->facebook}" data-original-title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                                      <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="{$tsurl->twitter}" data-original-title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                                      <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="{$tsurl->linkedin}" data-original-title="LinkedIn"><i class="fa fa-linkedin"></i></a></li>
+                                      <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="{$tsurl->skype}" data-original-title="Skype"><i class="fa fa-skype"></i></a></li>
+                                  {/if}
+                                  {else}
+                                  <ul class="social-links">
+                                      <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                                      <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                                      <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="LinkedIn"><i class="fa fa-linkedin"></i></a></li>
+                                      <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="Skype"><i class="fa fa-skype"></i></a></li>
+                                  </ul>
+                                  {/else}
+                                  {script $tdetails = EmployeeDetail::first(array("employee_id = ?"=>$teacher->id))}
+                                  <address>
+                                  {if($tdetails)}
+                                      <strong>{$tdetails->designation}</strong><br>
+                                      Vamoil Ave, Suite 23<br>
+                                      Dream land, Australia <br>
+                                      {/if}
+                                      <br/>
+                                      <abbr title="Phone">P:</abbr>{$teacher->phone}
+                                  </address>
+
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              {/foreach}
+              {/if}
+
+              {if isset($query)}
+              {foreach $teacher in $tclist}
+              <div class="col-md-6 col-sm-6">
+                  <div class="panel">
+                      <div class="panel-body">
+                          <div class="media">
+                              <a class="pull-left" href="#">
+                                  <img class="thumb media-object" src="{echo CDN}img/photos/user1.png" alt="">
+                              </a>
+                              <div class="media-body">
+                                  <h4>{$teacher->name}</h4>
+                                  {script $tsurl = SocialUrl::first(array("property =?"=> "employee", "property_id =?"=>$teacher->id))}
+                                  {if($tsurl)}
+                                  <ul class="social-links">
+                                      <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="{$tsurl->facebook}" data-original-title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                                      <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="{$tsurl->twitter}" data-original-title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                                      <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="{$tsurl->linkedin}" data-original-title="LinkedIn"><i class="fa fa-linkedin"></i></a></li>
+                                      <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="{$tsurl->skype}" data-original-title="Skype"><i class="fa fa-skype"></i></a></li>
+                                  {/if}
+                                  {else}
+                                  <ul class="social-links">
+                                      <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                                      <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                                      <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="LinkedIn"><i class="fa fa-linkedin"></i></a></li>
+                                      <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="#" data-original-title="Skype"><i class="fa fa-skype"></i></a></li>
+                                  </ul>
+                                  {/else}
+                                  {script $tdetails = EmployeeDetail::first(array("employee_id = ?"=>$teacher->id))}
+                                  <address>
+                                  {if($tdetails)}
+                                      <strong>{$tdetails->designation}</strong><br>
+                                      Vamoil Ave, Suite 23<br>
+                                      Dream land, Australia <br>
+                                      {/if}<br/>
+                                      <abbr title="Phone">P:</abbr>{$teacher->phone}
+                                  </address>
+
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              {/foreach}
+              {/if}
+              {if isset($nf)}
+              <div class="cpanel">
+                <div class="panel-body">
+                        <strong> No Details Found</strong>
+
+                </div>
+              </div>
+               {/if}
+              <!-- page end-->
+          </section>
+      </section>

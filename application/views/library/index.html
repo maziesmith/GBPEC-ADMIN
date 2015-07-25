@@ -1,0 +1,157 @@
+<section id="main-content">
+          <section class="wrapper site-min-height">
+              <!-- page start-->
+              <div class="row state-overview">
+                  <div class="col-lg-3 col-sm-6">
+                      <section class="panel">
+                          <div class="symbol terques">
+                              <i class="fa fa-user"></i>
+                          </div>
+                          <div class="value">
+                              <h1 class="count">495</h1>
+                              <p>New Users</p>
+                          </div>
+                      </section>
+                  </div>
+                  <div class="col-lg-3 col-sm-6">
+                      <section class="panel">
+                          <div class="symbol red">
+                              <i class="fa fa-tags"></i>
+                          </div>
+                          <div class="value">
+                              <h1 class=" count2">947</h1>
+                              <p>Sales</p>
+                          </div>
+                      </section>
+                  </div>
+                  <div class="col-lg-3 col-sm-6">
+                      <section class="panel">
+                          <div class="symbol yellow">
+                              <i class="fa fa-shopping-cart"></i>
+                          </div>
+                          <div class="value">
+                              <h1 class=" count3">328</h1>
+                              <p>New Order</p>
+                          </div>
+                      </section>
+                  </div>
+                  <div class="col-lg-3 col-sm-6">
+                      <section class="panel">
+                          <div class="symbol blue">
+                              <i class="fa fa-bar-chart-o"></i>
+                          </div>
+                          <div class="value">
+                              <h1 class=" count4">10328</h1>
+                              <p>Total Profit</p>
+                          </div>
+                      </section>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-lg-6">
+                      <section class="panel">
+                          <header class="panel-heading tab-bg-dark-navy-blue tab-right ">
+                              <ul class="nav nav-tabs pull-right">
+                                  <li class="active">
+                                      <a aria-expanded="true" data-toggle="tab" href="#home">
+                                          <i class="fa fa-home"></i></a>
+                                  </li>
+                                  <li class="">
+                                      <a aria-expanded="false" data-toggle="tab" href="#student">
+                                          <i class="fa fa-user"></i>&nbsp;Search Student</a>
+                                  </li>
+                                  <li class="">
+                                      <a aria-expanded="false" data-toggle="tab" href="#book">
+                                      <i class="fa fa-book"></i><span>&nbsp;Search Book</span></a>
+                                  </li>
+                              </ul>
+                              <span class="hidden-sm wht-color">Search From Here</span>
+                          </header>
+                          <div class="panel-body">
+                              <div class="tab-content">
+                                  <div id="home" class="tab-pane active">
+                                    Instructions:<hr>
+                                    <div>
+                                      <ul>
+                                        <li>To Search a Student Profile</li>
+                                        <ol>
+                                          <li>Click On Search Student Tab.</li>
+                                          <li>Select a search method.</li>
+                                          <li>Enetr the credentials asked</li>
+                                          <li>Click Search and you will see results in Right Hand side.</li>
+                                        </ol>
+                                        <hr>
+                                        <li>To Search a Student Book</li>
+                                        <ol>
+                                          <li>Click On Search Book Tab.</li>
+                                          <li>Select a search method.</li>
+                                          <li>Enetr the credentials asked</li>
+                                          <li>Click Search and you will see results in Right Hand side.</li>
+                                        </ol>
+                                      </ul>
+                                    </div>
+                                  </div>
+                                  <div id="student" class="tab-pane">
+                                   <form role="form" method="post" action="">
+                                      <div class="form-group">
+                                          <label for="exampleInputEmail1">Choose Search Option</label>
+                                          <select class="form-control" name="search_method">
+                                          <option>Select Search Method</option>
+                                          <option value="enrollment">Search By Enrollment Number</option>
+                                          <option value="name">Search By Name</option>
+                                          <option value="libcard">Search By Library Card No.</option>
+                                          <option value="course">Search By Course</option>
+                                        </select>
+                                      </div>
+                                      <input type="text" name="enrollment_number" placeholder="Enrollment No." autocomplete="off" class="form-control placeholder-no-fix">
+                                      <input type="hidden" name="action" value="student_search">
+                                      <button class="btn btn-lg btn-login btn-block" type="submit">Search</button>
+                                  </form>
+                                    
+                                  </div>
+                                  <div id="book" class="tab-pane">
+                                    <form role="form" action="" method="post">
+                                  <div class="form-group">
+                                      <label for="exampleInputEmail1">Choose Search Option</label>
+                                      <select class="form-control" name="search_method">
+                                      <option>Select Search Method</option>
+                                      <option value="author">Search By Author Name</option>
+                                      <option value="name">Search By Book Name</option>
+                                      <option value="accession">Search By Accession Number</option>
+                                      <option value="course">Search By Course</option>
+                                    </select>
+                                  </div>
+                                  <input type="text" name="accession_number" placeholder="Enrollment No." autocomplete="off" class="form-control placeholder-no-fix">
+                                      <input type="hidden" name="action" value="book_search">
+                                      <button class="btn btn-lg btn-login btn-block" type="submit">Search</button>
+                              </form>
+                                  </div>
+                              </div>
+                          </div>
+                      </section>
+                  </div>
+                  <div class="col-lg-6">
+                  {if(isset($success))}
+                    <section class="panel">
+                      {if($student)}
+                              <div class="user-heading alt green-bg">
+                                  <a href="#">
+                                      <img alt="" src="{echo CDN}img/profile-avatar.jpg">
+                                  </a>
+                                  <h1>{$student->name}</h1>
+                                  <p>{$student->email}</p>
+                              </div>
+
+                              <ul class="nav nav-pills nav-stacked">
+                                  <li>{$student->enrollment_no}</li>
+                                  <li>{$student->phone}</li>
+                                  
+                              </ul>
+                              {/if}
+                          </section> 
+                      {/if}
+                  </div>
+              </div>
+              <!-- page end-->
+          </section>
+      </section>

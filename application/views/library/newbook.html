@@ -1,0 +1,77 @@
+<!--main content start-->
+      <section id="main-content">
+          <section class="wrapper site-min-height">
+              <!-- page start-->
+              <div class="row">
+                  <div class="col-lg-12">
+                      <section class="panel">
+                          <header class="panel-heading">
+                              Add New Book Details
+                          </header>
+                          <div class="panel-body">
+                              {if isset($success)}
+                              <div class="alert alert-warning fade in">
+                              <button data-dismiss="alert" class="close close-sm" type="button">
+                              <i class="fa fa-times"></i>
+                              </button>
+                              <strong>Warning!</strong> {echo $success}
+                              </div>
+                              {/if}
+                              <form class="form-horizontal tasi-form" method="post">
+                                  <div class="form-group">
+                                      <label class="col-sm-2 control-label col-lg-2" >Book Details</label>
+                                      <div class="col-lg-8">
+                                          <div class="input-group input-group-lg m-bot15">
+                                              <span class="input-group-addon">Book Title</span>
+                                              <input type="text" class="form-control input-lg" placeholder="Computer and Cyber Security" name="title">
+                                          </div>
+                                          <div class="input-group input-group-lg m-bot15">
+                                              <span class="input-group-addon">Publication</span>
+                                              <input type="text" class="form-control input-lg" placeholder="MM Publication" name="publication">
+                                          </div>
+                                          <div class="input-group input-group-lg m-bot15">
+                                              <span class="input-group-addon">Edition</span>
+                                              <input type="text" class="form-control input-lg" placeholder="First" name="edition">
+                                              <span class="input-group-addon">Category</span>
+                                              <select class="form-control input-lg" name="category">
+                                              <option>Select a Category</option>
+                                              <optgroup label="Branch">
+                                                <option>Electronics</option>
+                                                <option>Automation</option>
+                                              </optgroup>
+                                              <optgroup label="Subject">
+                                                <option>Physics</option>
+                                                <option>Mathematics</option>
+                                                <option>Chemistry</option>
+                                              </optgroup>
+                                              </select>
+                                          </div>
+                                          <div class="input-group input-group-lg m-bot15">
+                                              <span class="input-group-addon">Cost</span>
+                                              <input type="text" class="form-control input-lg" placeholder="1380" name="cost">
+                                              <span class="input-group-addon">Total Books</span>
+                                              <input type="text" class="form-control input-lg" placeholder="10" name="stock">
+                                          </div>
+                                          <div class="input-group input-group-lg m-bot15">
+                                              <span class="input-group-addon">Author</span>
+                                              <input type="text" class="form-control input-lg" placeholder="Meraj Ahmad Siddiqui">
+                                          </div>
+                                          
+                                      </div>
+                                  </div>
+                                  <div>
+                                      <center>
+                                          <input type="hidden" name="action" value="newbook">
+                                          <input type="hidden" name="created" value="">
+                                          <button class="btn btn-lg btn-success" type="submit">Save Book Details</button>
+                                       </center>
+                                    </div>
+                              </form>
+                          </div>
+                      </section>
+                  </div>
+              </div>
+              <!-- page end-->
+          </section>
+      </section>
+      <!--main content end-->

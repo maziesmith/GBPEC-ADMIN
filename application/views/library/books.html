@@ -1,0 +1,108 @@
+<section id="main-content">
+  <section class="wrapper site-min-height">
+    <!-- page start-->
+    <section class="panel">
+      <header class="panel-heading">
+        Book Store
+      </header>
+      <div class="panel-body">
+        <div class="adv-table editable-table ">
+          <div class="clearfix">
+            <div class="btn-group pull-right">
+              <button class="btn dropdown-toggle" data-toggle="dropdown">Tools <i class="fa fa-angle-down"></i>
+              </button>
+              <ul class="dropdown-menu pull-right">
+                <li><a href="#">Print</a></li>
+                <li><a href="#">Save as PDF</a></li>
+                <li><a href="#">Export to Excel</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="space15"></div>
+          <div id="editable-sample_wrapper" class="dataTables_wrapper form-inline" role="grid">
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="dataTables_length" id="editable-sample_length">
+                  <label>
+                    <select class="form-control xsmall" aria-controls="editable-sample" size="1" name="editable-sample_length">
+                      <option selected="selected" value="5">5</option>
+                      <option value="15">15</option>
+                      <option value="20">20</option>
+                      <option value="-1">All</option>
+                    </select>
+                    records per page
+                  </label>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div id="editable-sample_filter" class="dataTables_filter"><label>Search: <input class="form-control medium" aria-controls="editable-sample" type="text"></label></div>
+              </div>
+            </div>
+            <table style="width: 1096px;" aria-describedby="editable-sample_info" class="table table-striped table-hover table-bordered dataTable" id="editable-sample">
+              <thead>
+                <tr role="row">
+                <th aria-label="Full Name: activate to sort column descending" aria-sort="ascending" style="width: 269px;" colspan="1" rowspan="1" aria-controls="editable-sample" tabindex="0" role="columnheader" class="sorting_asc">Book Title</th>
+                  <th aria-label="Username" style="width: 184px;" colspan="1" rowspan="1" role="columnheader" class="sorting_disabled">Author</th>
+                  <th aria-label="Notes: activate to sort column ascending" style="width: 180px;" colspan="1" rowspan="1" aria-controls="editable-sample" tabindex="0" role="columnheader" class="sorting">Publication</th>
+                  <th aria-label="Points: activate to sort column ascending" style="width: 123px;" colspan="1" rowspan="1" aria-controls="editable-sample" tabindex="0" role="columnheader" class="sorting">Total Stock</th>
+                  <th aria-label="Edit: activate to sort column ascending" style="width: 87px;" colspan="1" rowspan="1" aria-controls="editable-sample" tabindex="0" role="columnheader" class="sorting">Edit</th>
+                  <th aria-label="Delete: activate to sort column ascending" style="width: 127px;" colspan="1" rowspan="1" aria-controls="editable-sample" tabindex="0" role="columnheader" class="sorting">Delete</th>
+                </tr>
+              </thead>
+              <tbody aria-relevant="all" aria-live="polite" role="alert">
+                {foreach $book in $books}
+                {if ($book->id)%2!=0}
+                 {script $med = Author::first(array("book_id = ?" => $book->id))}
+                 {script $author = AuthorList::first(array("id = ?" => $med->author_id))}
+                <tr class="odd">
+                  <td class="">{$book->title}</td>
+                  <td class=" sorting_1">{$author->author_name}</td>
+                  <td class="center">{$book->publication}</td>
+                  <td class="">{$book->stock}</td>
+                  <td class=""><a class="edit" href="javascript:;">Edit</a></td>
+                  <td class=""><a class="delete" href="javascript:;">Delete</a></td>
+                </tr>
+                {/if}
+                {/foreach}
+                {foreach $book in $books}
+                {if ($book->id)%2==0}
+                {script $med = Author::first(array("book_id = ?" => $book->id))}
+               {script $author = AuthorList::first(array("id = ?" => $med->author_id))}
+                <tr class="even">
+                  <td class="">{$book->title}</td>
+                  <td class=" sorting_1">{$author->author_name}</td>
+                  <td class="center">{$book->publication}</td>
+                  <td class="">{$book->stock}</td>
+                  <td class=""><a class="edit" href="javascript:;">Edit</a></td>
+                  <td class=""><a class="delete" href="javascript:;">Delete</a></td>
+                </tr>
+                {/if}
+                {/foreach}
+               
+              </tbody>
+            </table>
+            <div class="row">
+              <div class="col-lg-6">
+                <div id="editable-sample_info" class="dataTables_info">Showing 1 to 11 of 11 entries</div>
+              </div>
+              <div class="col-lg-6">
+                <div class="dataTables_paginate paging_bootstrap pagination">
+                  <ul>
+                    <li class="prev disabled"><a href="#">← Prev</a></li>
+                    <li class="next"><a href="#">Next → </a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- page end-->
+  </section>
+</section>
+ <script>
+          jQuery(document).ready(function() {
+              EditableTable.init();
+          });
+      </script>
