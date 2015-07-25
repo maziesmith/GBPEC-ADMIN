@@ -6,8 +6,8 @@
  * @author Faizan Ayubi
  */
 use Shared\Controller as Controller;
-use framework\Registry as Registry;
-use framework\RequestMethods as RequestMethods;
+use Framework\Registry as Registry;
+use Framework\RequestMethods as RequestMethods;
 
 class Users extends Controller {
     /**
@@ -73,7 +73,7 @@ class Users extends Controller {
 
     protected function notify($options) {
         $template = $options["template"];
-        $view = new framework\View(array(
+        $view = new Framework\View(array(
             "file" => APP_PATH . "/application/views/users/emails/{$template}.html"
         ));
         foreach ($options as $key => $value) {
@@ -127,7 +127,7 @@ class Users extends Controller {
     }
 
     protected function LinkedIn($redirect = "") {
-        $li = framework\Registry::get("linkedin");
+        $li = Framework\Registry::get("linkedin");
         if (!empty($redirect)) {
             $li->changeCallbackURL($redirect);
         }

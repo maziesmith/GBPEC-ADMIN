@@ -5,8 +5,8 @@
  * @author Meraj Ahmad Siddiqui
  */
 use Shared\Controller as Controller;
-use framework\Registry as Registry;
-use framework\RequestMethods as RequestMethods;
+use Framework\Registry as Registry;
+use Framework\RequestMethods as RequestMethods;
 
 class Library extends Controller{
     /**
@@ -39,7 +39,7 @@ class Library extends Controller{
             $view->set("search", false);
         }
     $view->set("student", $student);
-    $this->getLayoutView()->set("seo", framework\Registry::get("seo")); 
+    $this->getLayoutView()->set("seo", Framework\Registry::get("seo")); 
     }
 
     /**
@@ -57,7 +57,7 @@ class Library extends Controller{
         $admin = Administrator::first(array("employee_id = ?" => $this->user->id));
         $view->set("user_details", $user_details);
         $view->set("admin", $admin);
-        $this->getLayoutView()->set("seo", framework\Registry::get("seo"));
+        $this->getLayoutView()->set("seo", Framework\Registry::get("seo"));
     }
 
     /**
@@ -70,12 +70,12 @@ class Library extends Controller{
         $this->changeLayout();
         $this->seo(array("title" => "Admin Panel","keywords" => "admin","description" => "admin", "view" => $this->getLayoutView()));
         $view = $this->getActionView();
-        // $this->getLayoutView()->set("seo", framework\Registry::get("seo"));
+        // $this->getLayoutView()->set("seo", Framework\Registry::get("seo"));
         $this->authorize();
         // searching books
         $books = BookStore::all();
         $view->set("books", $books);
-        $this->getLayoutView()->set("seo", framework\Registry::get("seo"));
+        $this->getLayoutView()->set("seo", Framework\Registry::get("seo"));
 
 
     }
@@ -86,7 +86,7 @@ class Library extends Controller{
         $this->changeLayout();
         $this->seo(array("title" => "Admin Panel","keywords" => "admin","description" => "admin", "view" => $this->getLayoutView()));
         $view = $this->getActionView();
-        // $this->getLayoutView()->set("seo", framework\Registry::get("seo"));
+        // $this->getLayoutView()->set("seo", Framework\Registry::get("seo"));
         $this->authorize();
 
         //adding new book
@@ -105,7 +105,7 @@ class Library extends Controller{
         }
         // searching books
 
-        $this->getLayoutView()->set("seo", framework\Registry::get("seo"));
+        $this->getLayoutView()->set("seo", Framework\Registry::get("seo"));
 
 
     }

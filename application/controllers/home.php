@@ -6,8 +6,8 @@
  * @author Meraj Ahmad Siddiqui
  */
 use Shared\Controller as Controller;
-use framework\Registry as Registry;
-use framework\RequestMethods as RequestMethods;
+use Framework\Registry as Registry;
+use Framework\RequestMethods as RequestMethods;
 
 class Home extends Controller {
 
@@ -37,7 +37,7 @@ class Home extends Controller {
                 $view->set("success", "Incorrect email or password");
             }
         } 
-        $this->getLayoutView()->set("seo", framework\Registry::get("seo"));
+        $this->getLayoutView()->set("seo", Framework\Registry::get("seo"));
     }
      public function logout() {
         $user = Employee::first(array("id = ?" => $this->user->id));
@@ -46,6 +46,6 @@ class Home extends Controller {
         $this->setUser(false);
         self::redirect("/admin/");
         $view = $this->getActionView();
-        $this->getLayoutView()->set("seo", framework\Registry::get("seo"));
+        $this->getLayoutView()->set("seo", Framework\Registry::get("seo"));
     }
 }

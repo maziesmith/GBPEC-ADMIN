@@ -5,8 +5,8 @@
  *
  * @author Meraj Ahmad Siddiqui
  */
-use framework\Registry as Registry;
-use framework\RequestMethods as RequestMethods;
+use Framework\Registry as Registry;
+use Framework\RequestMethods as RequestMethods;
 
 class Accounts extends Users {
  	
@@ -28,6 +28,6 @@ class Accounts extends Users {
          $this->defaultLayout = "layouts/accounts";
          $this->setLayout();
         
-        $this->getLayoutView()->set("seo", framework\Registry::get("seo"));
+        $this->getLayoutView()->set("seo", Framework\Registry::get("seo"));
     }
 }

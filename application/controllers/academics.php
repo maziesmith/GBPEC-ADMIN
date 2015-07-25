@@ -6,8 +6,8 @@
  * @author Meraj Ahmad Siddiqui
  */
 use Shared\Controller as Controller;
-use framework\Registry as Registry;
-use framework\RequestMethods as RequestMethods;
+use Framework\Registry as Registry;
+use Framework\RequestMethods as RequestMethods;
 
 class Academics extends Controller {
  	/**
@@ -64,7 +64,7 @@ class Academics extends Controller {
             $view->set("teachers", $teachers);
         }
         
-        $this->getLayoutView()->set("seo", framework\Registry::get("seo"));
+        $this->getLayoutView()->set("seo", Framework\Registry::get("seo"));
     }
     /**
     *
@@ -123,7 +123,7 @@ class Academics extends Controller {
         $branches = Branch::all();
         $view->set("branches", $branches);
         $view->set("courselist", $courselist);
-        $this->getLayoutView()->set("seo", framework\Registry::get("seo"));
+        $this->getLayoutView()->set("seo", Framework\Registry::get("seo"));
     }
 
 
